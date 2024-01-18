@@ -1,3 +1,23 @@
+@import "../sass/grid";
+
 main {
-    padding-top: 10rem;
+  padding-top: 3rem;
+
+  .section-title {
+    color: #464646;
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin-left: 3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .create-note-section {
+    height: 18rem;
+  }
+
+  .favorite-section {
+    @include device("s") {
+      padding-left: 1rem;
+    }
+  }
 }
