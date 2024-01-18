@@ -3,12 +3,19 @@
 .new-note {
   width: 53rem;
   height: 11rem;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
   padding: 0 1rem;
 
   position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0%);
+  left: 50%;
+  transform: translate(-50%, 0%);
+
+  .star-icon {
+    position: absolute;
+    top: .7rem;
+    right: 2.5rem;
+    cursor: pointer;
+  }
 
   @include device("s") {
     width: 100%;

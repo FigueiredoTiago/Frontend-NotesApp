@@ -1,5 +1,5 @@
 import "./styles.scss";
-// import star from "../../assets/img/star.png";
+import star from "../../assets/img/star.png";
 
 const NewNote = () => {
   return (
@@ -9,7 +9,8 @@ const NewNote = () => {
 
       <input type="text" placeholder="Criar nota..." className="input-note" />
 
-      {/* <img src={star} alt="star icon" className="star-icon" /> */}
+      <img src={star} alt="star icon" className="star-icon" />
+      
     </form>
   );
 };
