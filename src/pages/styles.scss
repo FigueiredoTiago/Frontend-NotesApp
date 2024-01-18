@@ -20,4 +20,9 @@ main {
       padding-left: 1rem;
     }
   }
+  .other-section {
+    @include device("s") {
+      padding-left: 1rem;
+    }
+  }
 }
