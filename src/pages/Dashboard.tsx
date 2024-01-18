@@ -7,7 +7,7 @@ const Dashboard = () => {
   //Escrever Funcao para puxar notas do banco de dados e notas favoritas tmb
 
   return (
-    
+
     <main>
 
       <section className="create-note-section">

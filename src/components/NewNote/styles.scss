@@ -3,13 +3,16 @@
 .new-note {
   width: 53rem;
   height: 11rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 
   position: absolute;
     left: 50%;
     transform: translate(-50%, 0%);
 
   @include device("s") {
-    width: 38rem;
+    width: 100%;
+    max-width: 38rem;
     height: 11rem;
   }
 
