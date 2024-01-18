@@ -2,18 +2,20 @@
 
 header {
   background-color: #fff;
-  height: 5.7rem;
-  padding: 0 1rem;
-
-  display: flex;
-  align-items: center;
-  gap: 3rem;
+  
+  nav {
+    height: 5.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
 
   .logo-box {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: .5rem;
+    margin-right: 1rem;
 
     .logo {
       width: 100%;
