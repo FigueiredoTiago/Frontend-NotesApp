@@ -4,6 +4,10 @@
   width: 53rem;
   height: 11rem;
 
+  position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+
   @include device("s") {
     width: 38rem;
     height: 11rem;

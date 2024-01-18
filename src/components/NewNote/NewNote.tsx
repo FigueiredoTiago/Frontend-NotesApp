@@ -4,6 +4,7 @@ import "./styles.scss";
 const NewNote = () => {
   return (
     <form className="new-note">
+
       <input type="text" placeholder="Titulo" className="input-title" />
 
       <input type="text" placeholder="Criar nota..." className="input-note" />
