@@ -7,7 +7,8 @@ const Dashboard = () => {
   //Escrever Funcao para puxar notas do banco de dados e notas favoritas tmb
 
   return (
-    <main className="container">
+    
+    <main>
 
       <section className="create-note-section">
         <NewNote />
@@ -22,12 +23,14 @@ const Dashboard = () => {
         <NoteCard />
         <NoteCard />
         <NoteCard />
+        
       </section>
 
 
       {/* section para mostrar todos os itens da api */}
 
       <section className="other-section">
+
         <p className="section-title">Outras</p>
 
         <NoteCard />

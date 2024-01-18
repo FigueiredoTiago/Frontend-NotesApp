@@ -2,6 +2,10 @@
 
 main {
   padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   .section-title {
     color: #464646;
@@ -15,14 +19,5 @@ main {
     height: 18rem;
   }
 
-  .favorite-section {
-    @include device("s") {
-      padding-left: 1rem;
-    }
-  }
-  .other-section {
-    @include device("s") {
-      padding-left: 1rem;
-    }
-  }
+  
 }
