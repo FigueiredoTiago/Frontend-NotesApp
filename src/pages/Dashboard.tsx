@@ -3,11 +3,9 @@ import "./styles.scss";
 
 const Dashboard = () => {
   return (
-    <div>
-      <main>
-        <NewNote />
-      </main>
-    </div>
+    <main className="container">
+      <NewNote />
+    </main>
   );
 };
 
