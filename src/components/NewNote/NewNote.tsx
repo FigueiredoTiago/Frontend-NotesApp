@@ -1,26 +1,15 @@
 import "./styles.scss";
-import star from "../../assets/img/star.png";
+// import star from "../../assets/img/star.png";
 
 const NewNote = () => {
   return (
-    <div className="new-box container">
+    <form className="new-note">
+      <input type="text" placeholder="Titulo" className="input-title" />
 
-      <form>
+      <input type="text" placeholder="Criar nota..." className="input-note" />
 
-        <div className="input-container">
-
-          <input type="text" placeholder="Titulo" className="input-title" />
-          <input
-            type="text"
-            placeholder="Criar nota..."
-            className="input-note"
-          />
-          <img src={star} alt="star icon" className="star-icon" />
-
-        </div>
-
-      </form>
-    </div>
+      {/* <img src={star} alt="star icon" className="star-icon" /> */}
+    </form>
   );
 };
 
