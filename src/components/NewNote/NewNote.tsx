@@ -3,8 +3,9 @@ import star from "../../assets/img/star.png";
 
 const NewNote = () => {
   return (
-    <div className="new-box container">
-      <form className="grid-4 offset-4">
+    <div className="new-box ">
+
+      <form className="grid-12">
         
         <div className="input-container">
             <input type="text" placeholder="Titulo" className="input-title" />
