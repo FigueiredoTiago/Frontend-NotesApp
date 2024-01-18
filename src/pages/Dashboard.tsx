@@ -1,10 +1,14 @@
-import './styles.scss';
+import NewNote from "../components/NewNote/NewNote";
+import "./styles.scss";
+
 const Dashboard = () => {
-  return <div>
-    <main>
-      <h5>DashBoard</h5>
-    </main>
-  </div>;
+  return (
+    <div>
+      <main>
+        <NewNote />
+      </main>
+    </div>
+  );
 };
 
 export default Dashboard;
