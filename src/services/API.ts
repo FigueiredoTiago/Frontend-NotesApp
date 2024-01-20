@@ -25,6 +25,7 @@ export const useGetNotes = () => {
 
   return { data, loading, setData } as const;
 };
+
 export const useGetFavorites = () => {
   const [data, setFavorite] = useState<Note[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -47,4 +48,25 @@ export const useGetFavorites = () => {
   }, [apiUrl]);
 
   return { data, loading, setFavorite } as const;
+};
+
+export const useCreateNote = () => {
+  const [note, setNewNote] = useState<Note | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const apiUrl = "http://localhost:3000/notes/";
+
+  const createNote = async (data: Note) => {
+    try {
+      setLoading(true);
+      const response: AxiosResponse<Note> = await axios.post(apiUrl, data);
+      console.log(response.data);
+      setNewNote(response.data);
+    } catch (error) {
+      console.error(`Error creating note at ${apiUrl}:`, error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { note, loading, createNote } as const;
 };

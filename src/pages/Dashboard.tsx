@@ -24,7 +24,9 @@ const Dashboard = () => {
 
       <section className="favorite-section container">
         <p className="section-title">Favoritas</p>
-        {favorites?.map((item: Note) => <NoteCard key={item.id} note={item} />)}
+        {favorites?.map((item: Note) => (
+          <NoteCard key={item.id ?? ""} note={item} />
+        ))}
       </section>
 
       {/* section para mostrar todos os itens da api */}
@@ -32,7 +34,9 @@ const Dashboard = () => {
       <section className="other-section container">
         <p className="section-title">Outras</p>
 
-        {data?.map((item: Note) => <NoteCard key={item.id} note={item} />)}
+        {data?.map((item: Note) => (
+          <NoteCard key={item.id ?? ""} note={item} />
+        ))}
       </section>
     </main>
   );

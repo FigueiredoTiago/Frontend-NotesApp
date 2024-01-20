@@ -1,10 +1,10 @@
 export interface Note {
-  id: string;
+  id?: string;
   title: string;
   description: string;
-  color: string;
-  favorite: boolean;
-  createdAt: string;
+  color?: string;
+  favorite?: boolean;
+  createdAt?: string;
 }
 
 export interface NoteCardProps {
@@ -16,4 +16,11 @@ export interface GetNotesResponse {
   notes: Note[];
   loading: boolean;
   setNotes: React.Dispatch<React.SetStateAction<Note[]>>;
+}
+
+export interface FormData {
+  title: string;
+  description: string;
+  color?: string;
+  favorite?: boolean;
 }

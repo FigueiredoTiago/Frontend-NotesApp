@@ -4,6 +4,9 @@ import starGold from "../../assets/img/starGold.png";
 import submit from "../../assets/img/submit.png";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useState } from "react";
+import { FormData } from "../../interfaces/notes.interface";
+import { useCreateNote } from "../../services/API";
+import { Note } from "../../interfaces/notes.interface";
 
 const NewNote = () => {
   const {
@@ -13,22 +16,27 @@ const NewNote = () => {
     reset,
   } = useForm<FormData>();
 
-  const [isStarred, setIsStarred] = useState(false);
+  const [favorite, setFavorite] = useState(false);
 
-  interface FormData {
-    title: string;
-    description: string;
-    color?: string;
-    favorite?: boolean;
-  }
+  const { createNote,note } = useCreateNote();
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
+    //falta enviar a color
+
+    const newNote: Note = {
+      title: data.title,
+      description: data.description,
+      favorite: favorite,
+    };
+
+    createNote(newNote);
+    console.log(note);
+
     reset();
   };
 
   const handleStarClick = () => {
-    setIsStarred(!isStarred);
+    setFavorite(!favorite);
   };
 
   return (
@@ -48,11 +56,10 @@ const NewNote = () => {
 
       <button
         type="button"
-        className={` star-icon star-icon-button ${isStarred ? "starred" : ""}`}
+        className={` star-icon star-icon-button ${favorite ? "starred" : ""}`}
         onClick={handleStarClick}
       >
-        {/* Adicione a imagem ou ícone desejado aqui */}
-        {isStarred ? (
+        {favorite ? (
           <img src={starGold} alt="star button" />
         ) : (
           <img src={star} alt="star button" />
