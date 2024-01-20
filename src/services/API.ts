@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 import { Note } from "../interfaces/notes.interface";
 
+//rota para pegar todas as notas
 export const useGetNotes = () => {
   const [data, setData] = useState<Note[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -26,6 +27,7 @@ export const useGetNotes = () => {
   return { data, loading, setData } as const;
 };
 
+//rota para pegar as notas favoritas
 export const useGetFavorites = () => {
   const [data, setFavorite] = useState<Note[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -50,6 +52,7 @@ export const useGetFavorites = () => {
   return { data, loading, setFavorite } as const;
 };
 
+//rota para criar novas notas
 export const useCreateNote = () => {
   const [note, setNewNote] = useState<Note | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -69,4 +72,16 @@ export const useCreateNote = () => {
   };
 
   return { note, loading, createNote } as const;
+};
+
+//rota para deletar notas
+
+export const deleteNote = async (noteId: string) => {
+  const url = `http://localhost:3000/notes/${noteId}`;
+  try {
+    const response = await axios.delete(url);
+    return console.log(response.data);
+  } catch (error) {
+    console.error(`Error deleting note at ${url}:`, error);
+  }
 };

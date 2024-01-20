@@ -18,7 +18,7 @@ const NewNote = () => {
 
   const [favorite, setFavorite] = useState(false);
 
-  const { createNote,note } = useCreateNote();
+  const { createNote, note } = useCreateNote();
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     //falta enviar a color
@@ -27,6 +27,7 @@ const NewNote = () => {
       title: data.title,
       description: data.description,
       favorite: favorite,
+      _id: ""
     };
 
     createNote(newNote);
