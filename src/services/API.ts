@@ -1,26 +1,27 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-// import { toast } from "react-toastify";
+import axios, { AxiosResponse } from "axios";
+import { Note } from "../interfaces/notes.interface";
 
-export const GetNotes = () => {
-  const [notes, setNotes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const url = "http://localhost:3000/notes/";
+export const useApi = () => {
+  const [data, setData] = useState<Note[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const apiUrl = "http://localhost:3000/notes/";
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(url ?? "");
-        setNotes(response.data);
+        const response: AxiosResponse<{ notes: Note[] }> =
+          await axios.get(apiUrl);
+        setData(response.data.notes);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching Products:", error);
+        console.error(`Error fetching data from ${apiUrl}:`, error);
         setLoading(false);
       }
     };
 
-    fetchProducts();
-  }, [url]);
+    fetchData();
+  }, [apiUrl]);
 
-  return { notes, setNotes, loading };
+  return { data, loading, setData } as const;
 };

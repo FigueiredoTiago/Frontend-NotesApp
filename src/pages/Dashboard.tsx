@@ -1,12 +1,17 @@
 import NewNote from "../components/NewNote/NewNote";
 import NoteCard from "../components/NoteCard/NoteCard";
 import "./styles.scss";
-import { GetNotes } from "../services/API";
+import { useApi } from "../services/API";
+import { Note } from "../interfaces/notes.interface";
 
 const Dashboard = () => {
-  const { notes } = GetNotes();
+  const { data, loading } = useApi();
 
-  console.log(notes);
+  console.log(data);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <main>
@@ -18,10 +23,7 @@ const Dashboard = () => {
 
       <section className="favorite-section">
         <p className="section-title">Favoritas</p>
-
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
+        {/* Renderize os favoritos aqui */}
       </section>
 
       {/* section para mostrar todos os itens da api */}
@@ -29,9 +31,8 @@ const Dashboard = () => {
       <section className="other-section">
         <p className="section-title">Outras</p>
 
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
+        {data?.map((item: Note) => <NoteCard key={item.id} note={item} />)}
+        
       </section>
     </main>
   );
