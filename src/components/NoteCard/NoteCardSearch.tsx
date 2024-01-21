@@ -9,7 +9,7 @@ const NoteCardSearch = (note: Note) => {
   };
 
   return (
-    <div className="card grid-4" style={getBackgroundColor()}>
+    <div className="card grid-6" style={getBackgroundColor()}>
       <div className="title-card">
         <h3 className="title">{note.title}</h3>
 

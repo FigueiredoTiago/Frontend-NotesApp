@@ -54,7 +54,7 @@ const Header = () => {
         {error && <p>{error}</p>}
 
         {showResults && data && (
-          <div className="search-results container">
+          <div className="search-results">
             {data.map((note) => (
               <NoteCardSearch key={note.id} {...note} />
             ))}
