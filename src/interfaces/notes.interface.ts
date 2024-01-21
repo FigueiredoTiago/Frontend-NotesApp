@@ -10,8 +10,18 @@ export interface Note {
 
 export interface NoteCardProps {
   note: Note;
-  key: string; // Adicionando a propriedade 'key' na interface
+  key: string;
   updateNoteList: (noteId: string) => void;
+  updateNewNoteList: (newNote: Note) => void;
+}
+
+export interface NoteCardFavProps {
+  note: Note;
+  updateNoteList: (noteId: string) => void;
+}
+
+export interface NewNoteCardProps {
+  updateNewNoteList: (newNote: Note) => void;
 }
 
 export interface GetNotesResponse {

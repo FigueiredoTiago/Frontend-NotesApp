@@ -68,29 +68,29 @@ export const useGetNotes = () => {
 // };
 
 //rota para pegar as notas favoritas
-export const useGetFavorites = () => {
-  const [data, setFavorite] = useState<Note[] | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const apiUrl = "http://localhost:3000/notes/favorites";
+// export const useGetFavorites = () => {
+//   const [data, setFavorite] = useState<Note[] | null>(null);
+//   const [loading, setLoading] = useState<boolean>(true);
+//   const apiUrl = "http://localhost:3000/notes/favorites";
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response: AxiosResponse<{ notes: Note[] }> =
-          await axios.get(apiUrl);
-        setFavorite(response.data.notes);
-        setLoading(false);
-      } catch (error) {
-        console.error(`Error fetching data from ${apiUrl}:`, error);
-        setLoading(false);
-      }
-    };
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response: AxiosResponse<{ notes: Note[] }> =
+//           await axios.get(apiUrl);
+//         setFavorite(response.data.notes);
+//         setLoading(false);
+//       } catch (error) {
+//         console.error(`Error fetching data from ${apiUrl}:`, error);
+//         setLoading(false);
+//       }
+//     };
 
-    fetchData();
-  }, [apiUrl]);
+//     fetchData();
+//   }, [apiUrl]);
 
-  return { data, loading, setFavorite } as const;
-};
+//   return { data, loading, setFavorite } as const;
+// };
 
 //rota para criar novas notas
 export const useCreateNote = () => {
@@ -102,7 +102,6 @@ export const useCreateNote = () => {
     try {
       setLoading(true);
       const response: AxiosResponse<Note> = await axios.post(apiUrl, data);
-      console.log(response.data);
       setNewNote(response.data);
     } catch (error) {
       console.error(`Error creating note at ${apiUrl}:`, error);

@@ -22,6 +22,13 @@ const Dashboard = () => {
     );
   };
 
+  //atualiando a lista de notas com a nova nota
+  const updateNewNoteList = (newNote: Note) => {
+    setData((prevNotes) =>
+      prevNotes !== null ? [...prevNotes, newNote] : [newNote],
+    );
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -29,7 +36,7 @@ const Dashboard = () => {
   return (
     <main className="">
       <section className="create-note-section">
-        <NewNote />
+        <NewNote updateNewNoteList={updateNewNoteList}  />
       </section>
 
       {/* section para mostrar apenas os favoritos */}

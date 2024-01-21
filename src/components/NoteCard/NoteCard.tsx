@@ -4,10 +4,10 @@ import star from "../../assets/img/star.png";
 import starGold from "../../assets/img/starGold.png";
 import color from "../../assets/img/color.svg";
 import edit from "../../assets/img/edit.svg";
-import { NoteCardProps } from "../../interfaces/notes.interface";
+import { NoteCardFavProps } from "../../interfaces/notes.interface";
 import { deleteNote } from "../../services/API";
 
-const NoteCard: React.FC<NoteCardProps> = ({ note, updateNoteList }) => {
+const NoteCard: React.FC<NoteCardFavProps> = ({ note, updateNoteList }) => {
   const getBackgroundColor = () => {
     return { backgroundColor: note.color };
   };

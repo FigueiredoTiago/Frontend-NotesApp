@@ -7,8 +7,9 @@ import { useState } from "react";
 import { FormData } from "../../interfaces/notes.interface";
 import { useCreateNote } from "../../services/API";
 import { Note } from "../../interfaces/notes.interface";
+import { NewNoteCardProps } from "../../interfaces/notes.interface";
 
-const NewNote = () => {
+const NewNote: React.FC<NewNoteCardProps> = ({ updateNewNoteList }) => {
   const {
     register,
     handleSubmit,
@@ -18,20 +19,26 @@ const NewNote = () => {
 
   const [favorite, setFavorite] = useState(false);
 
-  const { createNote, note } = useCreateNote();
+  const { createNote } = useCreateNote();
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     //falta enviar a color
 
     const newNote: Note = {
       title: data.title,
       description: data.description,
       favorite: favorite,
-      _id: ""
+      _id: "",
     };
 
-    createNote(newNote);
-    console.log(note);
+    const response = await createNote(newNote);
+
+    //importar aqui a func setData
+    //e fazer a adicao dessa nota array de data;
+    if (response.note) {
+      console.log(response.note);
+      updateNewNoteList(response.note);
+    }
 
     reset();
   };
