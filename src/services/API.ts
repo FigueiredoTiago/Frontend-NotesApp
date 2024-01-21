@@ -94,17 +94,21 @@ export const useGetNotes = () => {
 
 //rota para criar novas notas
 export const useCreateNote = () => {
-  const [note, setNewNote] = useState<Note | null>(null);
+  const [note, setNewNote] = useState<{ message: string; note: Note } | null>(
+    null,
+  );
   const [loading, setLoading] = useState<boolean>(false);
   const apiUrl = "http://localhost:3000/notes/";
 
   const createNote = async (data: Note) => {
     try {
       setLoading(true);
-      const response: AxiosResponse<Note> = await axios.post(apiUrl, data);
+      const response: AxiosResponse<{ message: string; note: Note }> =
+        await axios.post(apiUrl, data);
       setNewNote(response.data);
+      console.log(response.data);
     } catch (error) {
-      console.error(`Error creating note at ${apiUrl}:`, error);
+      console.error(`Error creating note:`, error);
     } finally {
       setLoading(false);
     }

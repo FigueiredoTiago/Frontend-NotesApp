@@ -27,18 +27,15 @@ const NewNote: React.FC<NewNoteCardProps> = ({ updateNewNoteList }) => {
     const newNote: Note = {
       title: data.title,
       description: data.description,
+      color: "#29ffc9",
       favorite: favorite,
       _id: "",
     };
 
-    const response = await createNote(newNote);
+    await createNote(newNote);
+    // console.log(newNote);
 
-    //importar aqui a func setData
-    //e fazer a adicao dessa nota array de data;
-    if (response.note) {
-      console.log(response.note);
-      updateNewNoteList(response.note);
-    }
+    updateNewNoteList(newNote);
 
     reset();
   };
