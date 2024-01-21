@@ -7,7 +7,7 @@ import edit from "../../assets/img/edit.svg";
 import { NoteCardProps } from "../../interfaces/notes.interface";
 import { deleteNote } from "../../services/API";
 
-const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
+const NoteCard: React.FC<NoteCardProps> = ({ note, updateNoteList }) => {
   const getBackgroundColor = () => {
     return { backgroundColor: note.color };
   };
@@ -16,6 +16,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
     console.log(note._id);
     confirm("Deseja mesmo deletar essa nota?");
     deleteNote(note._id);
+    updateNoteList(note._id);
   };
 
   return (

@@ -1,14 +1,26 @@
 import NewNote from "../components/NewNote/NewNote";
 import NoteCard from "../components/NoteCard/NoteCard";
 import "./styles.scss";
-import { useGetNotes, useGetFavorites } from "../services/API";
+import { useGetNotes } from "../services/API";
 import { Note } from "../interfaces/notes.interface";
 
 const Dashboard = () => {
-  const { data, loading } = useGetNotes();
-  const { data: favorites } = useGetFavorites();
+  // const { data, loading, setData } = useGetNotes();
+  // const { data: favorites, setFavorite } = useGetFavorites();
 
-  console.log(data);
+  const { getNonFavoriteNotes, getFavoriteNotes, setData, loading } =
+    useGetNotes();
+
+  const favoriteNotes = getFavoriteNotes();
+  const nonFavoriteNotes = getNonFavoriteNotes();
+
+  const updateNoteList = (noteIdToDelete: string) => {
+    setData((prevNotes) =>
+      prevNotes !== null
+        ? prevNotes.filter((note) => note._id !== noteIdToDelete)
+        : [],
+    );
+  };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -24,8 +36,13 @@ const Dashboard = () => {
 
       <section className="favorite-section container">
         <p className="section-title">Favoritas</p>
-        {favorites?.map((item: Note) => (
-          <NoteCard key={item.id ?? ""} note={item} />
+
+        {favoriteNotes.map((note: Note) => (
+          <NoteCard
+            key={note._id}
+            note={note}
+            updateNoteList={updateNoteList}
+          />
         ))}
       </section>
 
@@ -34,8 +51,12 @@ const Dashboard = () => {
       <section className="other-section container">
         <p className="section-title">Outras</p>
 
-        {data?.map((item: Note) => (
-          <NoteCard key={item.id ?? ""} note={item} />
+        {nonFavoriteNotes.map((note: Note) => (
+          <NoteCard
+            key={note._id}
+            note={note}
+            updateNoteList={updateNoteList}
+          />
         ))}
       </section>
     </main>

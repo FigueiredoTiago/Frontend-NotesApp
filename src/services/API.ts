@@ -3,6 +3,7 @@ import axios, { AxiosResponse } from "axios";
 import { Note } from "../interfaces/notes.interface";
 
 //rota para pegar todas as notas
+
 export const useGetNotes = () => {
   const [data, setData] = useState<Note[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -24,8 +25,47 @@ export const useGetNotes = () => {
     fetchData();
   }, [apiUrl]);
 
-  return { data, loading, setData } as const;
+  // Retorna as notas favoritas e o restante das notas
+  const getFavoriteNotes = () => {
+    return data ? data.filter((note) => note.favorite) : [];
+  };
+
+  const getNonFavoriteNotes = () => {
+    return data ? data.filter((note) => !note.favorite) : [];
+  };
+
+  return {
+    data,
+    loading,
+    setData,
+    getFavoriteNotes,
+    getNonFavoriteNotes,
+  } as const;
 };
+
+// export const useGetNotes = () => {
+//   const [data, setData] = useState<Note[] | null>(null);
+//   const [loading, setLoading] = useState<boolean>(true);
+//   const apiUrl = "http://localhost:3000/notes/";
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response: AxiosResponse<{ notes: Note[] }> =
+//           await axios.get(apiUrl);
+//         setData(response.data.notes);
+//         setLoading(false);
+//       } catch (error) {
+//         console.error(`Error fetching data from ${apiUrl}:`, error);
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchData();
+//   }, [apiUrl]);
+
+//   return { data, loading, setData } as const;
+// };
 
 //rota para pegar as notas favoritas
 export const useGetFavorites = () => {
