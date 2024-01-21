@@ -34,9 +34,9 @@ const Dashboard = () => {
   }
 
   return (
-    <main className="">
+    <main>
       <section className="create-note-section">
-        <NewNote updateNewNoteList={updateNewNoteList}  />
+        <NewNote updateNewNoteList={updateNewNoteList} />
       </section>
 
       {/* section para mostrar apenas os favoritos */}
