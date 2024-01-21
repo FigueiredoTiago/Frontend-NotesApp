@@ -24,25 +24,9 @@ const Dashboard = () => {
 
   //atualiando a lista de notas com a nova nota
   const updateNewNoteList = (newNote: Note) => {
-    setData((prevNotes) => {
-      if (prevNotes) {
-        // Encontre a nota existente no array pelo _id
-        const index = prevNotes.findIndex((note) => note._id === newNote._id);
-
-        // Se a nota existir, substitui pelos dados atualizados
-        if (index !== -1) {
-          const updatedNotes = [...prevNotes];
-          updatedNotes[index] = newNote;
-          return updatedNotes;
-        } else {
-          // Caso contrário, apenas adiciona a nota ao array
-          return [...prevNotes, newNote];
-        }
-      } else {
-        // Se o array ainda não existir, cria com a nota atualizada
-        return [newNote];
-      }
-    });
+    setData((prevNotes) =>
+      prevNotes !== null ? [...prevNotes, newNote] : [newNote],
+    );
   };
 
   if (loading) {
