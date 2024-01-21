@@ -49,8 +49,6 @@ export const UpdateNote: React.FC<NewNoteUpCardProps> = ({
 
   const { updateNote } = useUpdateNote(id);
 
-  //   console.log(data);
-
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     const updatedNote: Note = {
       _id: "",
@@ -65,6 +63,7 @@ export const UpdateNote: React.FC<NewNoteUpCardProps> = ({
     await updateNote(updatedNote);
 
     updateNewNoteList(updatedNote);
+    window.location.reload();
 
     reset();
   };
