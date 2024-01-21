@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 import { Note } from "../interfaces/notes.interface";
+import { toast } from "react-toastify";
 
 //rota para pegar todas as notas
 
@@ -56,9 +57,11 @@ export const useCreateNote = () => {
       setLoading(true);
       const response: AxiosResponse<{ message: string; note: Note }> =
         await axios.post(apiUrl, data);
+      toast.success(response.data.message);
       setNewNote(response.data);
     } catch (error) {
       console.error(`Error creating note:`, error);
+      toast.error("Não foi possível criar a nota!");
     } finally {
       setLoading(false);
     }
@@ -73,6 +76,7 @@ export const deleteNote = async (noteId: string) => {
   const url = `http://localhost:3000/notes/${noteId}`;
   try {
     const response = await axios.delete(url);
+    toast.success(response.data.message);
     return console.log(response.data);
   } catch (error) {
     console.error(`Error deleting note at ${url}:`, error);
@@ -92,8 +96,8 @@ export const useUpdateNote = (id: string) => {
       setLoading(true);
       const response: AxiosResponse<{ message: string; note: Note }> =
         await axios.patch(apiUrl, data);
+      toast.success(response.data.message);
       setNewNote(response.data);
-      // console.log(response.data);
     } catch (error) {
       console.error(`Error creating note:`, error);
     } finally {
@@ -119,6 +123,7 @@ export const useGetNoteById = (id: string) => {
         setLoading(false);
       } catch (error) {
         console.error(`Error fetching data from ${apiUrl}:`, error);
+        toast.error("Não foi possível encontrar a nota!");
         setLoading(false);
       }
     };
@@ -144,7 +149,7 @@ export const useGetNoteByTitle = () => {
       const response: AxiosResponse<{ results: Note[] }> = await axios.get(
         `http://localhost:3000/notes/search/?title=${title}`,
       );
-      console.log(response.data.results);
+
       setData(response.data.results);
     } catch (error) {
       console.error(`Error fetching data:`, error);

@@ -3,6 +3,7 @@ import NoteCard from "../components/NoteCard/NoteCard";
 import "./styles.scss";
 import { useGetNotes } from "../services/API";
 import { Note } from "../interfaces/notes.interface";
+import { ToastContainer } from "react-toastify";
 
 const Dashboard = () => {
   // const { data, loading, setData } = useGetNotes();
@@ -68,6 +69,8 @@ const Dashboard = () => {
           />
         ))}
       </section>
+
+      <ToastContainer />
     </main>
   );
 };
