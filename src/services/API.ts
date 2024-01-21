@@ -106,7 +106,7 @@ export const useCreateNote = () => {
       const response: AxiosResponse<{ message: string; note: Note }> =
         await axios.post(apiUrl, data);
       setNewNote(response.data);
-      console.log(response.data);
+      
     } catch (error) {
       console.error(`Error creating note:`, error);
     } finally {

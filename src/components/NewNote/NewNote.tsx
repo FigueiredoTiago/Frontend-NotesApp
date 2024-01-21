@@ -33,7 +33,6 @@ const NewNote: React.FC<NewNoteCardProps> = ({ updateNewNoteList }) => {
     };
 
     await createNote(newNote);
-    // console.log(newNote);
 
     updateNewNoteList(newNote);
 
