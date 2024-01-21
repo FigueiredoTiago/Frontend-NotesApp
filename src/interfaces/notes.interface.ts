@@ -43,3 +43,6 @@ export interface FormData {
   color?: string;
   favorite?: boolean;
 }
+export interface FormSearchData {
+  title?: string;
+}

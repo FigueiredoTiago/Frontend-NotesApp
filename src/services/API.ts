@@ -43,55 +43,6 @@ export const useGetNotes = () => {
   } as const;
 };
 
-// export const useGetNotes = () => {
-//   const [data, setData] = useState<Note[] | null>(null);
-//   const [loading, setLoading] = useState<boolean>(true);
-//   const apiUrl = "http://localhost:3000/notes/";
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response: AxiosResponse<{ notes: Note[] }> =
-//           await axios.get(apiUrl);
-//         setData(response.data.notes);
-//         setLoading(false);
-//       } catch (error) {
-//         console.error(`Error fetching data from ${apiUrl}:`, error);
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchData();
-//   }, [apiUrl]);
-
-//   return { data, loading, setData } as const;
-// };
-
-//rota para pegar as notas favoritas
-// export const useGetFavorites = () => {
-//   const [data, setFavorite] = useState<Note[] | null>(null);
-//   const [loading, setLoading] = useState<boolean>(true);
-//   const apiUrl = "http://localhost:3000/notes/favorites";
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response: AxiosResponse<{ notes: Note[] }> =
-//           await axios.get(apiUrl);
-//         setFavorite(response.data.notes);
-//         setLoading(false);
-//       } catch (error) {
-//         console.error(`Error fetching data from ${apiUrl}:`, error);
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchData();
-//   }, [apiUrl]);
-
-//   return { data, loading, setFavorite } as const;
-// };
-
 //rota para criar novas notas
 export const useCreateNote = () => {
   const [note, setNewNote] = useState<{ message: string; note: Note } | null>(
@@ -129,7 +80,6 @@ export const deleteNote = async (noteId: string) => {
 };
 
 //rota para atualizar notas
-
 export const useUpdateNote = (id: string) => {
   const [note, setNewNote] = useState<{ message: string; note: Note } | null>(
     null,
@@ -140,7 +90,8 @@ export const useUpdateNote = (id: string) => {
   const updateNote = async (data: Note) => {
     try {
       setLoading(true);
-      const response: AxiosResponse<{ message: string; note: Note }> = await axios.patch(apiUrl, data);
+      const response: AxiosResponse<{ message: string; note: Note }> =
+        await axios.patch(apiUrl, data);
       setNewNote(response.data);
       // console.log(response.data);
     } catch (error) {
@@ -176,4 +127,36 @@ export const useGetNoteById = (id: string) => {
   }, [apiUrl, id]);
 
   return { data, loading, setData } as const;
+};
+
+//rota para buscar uma nota pelo titulo
+
+export const useGetNoteByTitle = () => {
+  const [data, setData] = useState<Note[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const getNoteByTitle = async (title: string) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response: AxiosResponse<{ results: Note[] }> = await axios.get(
+        `http://localhost:3000/notes/search/?title=${title}`,
+      );
+      console.log(response.data.results);
+      setData(response.data.results);
+    } catch (error) {
+      console.error(`Error fetching data:`, error);
+      setError("Não foi possível encontrar a nota!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    // O useEffect pode ser usado para fazer alguma coisa quando a instância do hook for montada, se necessário.
+  }, []);
+
+  return { data, loading, error, getNoteByTitle } as const;
 };

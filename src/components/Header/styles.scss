@@ -66,4 +66,44 @@ header {
     position: absolute;
     right: 1rem;
   }
+
+
+  .search-results {
+    position: absolute;
+    top: 10rem;
+    right: 50%;
+    transform: translateX(50%)  ;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0rem .1rem .7rem 0rem rgba(149, 149, 149, 0.25);
+    z-index: 1;
+    padding: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    gap: 1rem;
+    // max-height: 50rem;
+    overflow-y: auto;
+
+    @include device("s") {
+      width: 50%;
+    }
+
+    .search-result {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+
+      .search-result__img {
+        width: 100%;
+        max-width: 3.6rem;
+      }
+
+      .search-result__tittle {
+        color: #455a64;
+        font-weight: 400;
+        font-size: 1.6rem;
+      }
+    }
+  }
 }
