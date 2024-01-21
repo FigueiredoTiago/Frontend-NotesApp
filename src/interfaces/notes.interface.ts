@@ -18,10 +18,17 @@ export interface NoteCardProps {
 export interface NoteCardFavProps {
   note: Note;
   updateNoteList: (noteId: string) => void;
+  updateNewNoteList: (newNote: Note) => void;
 }
 
 export interface NewNoteCardProps {
   updateNewNoteList: (newNote: Note) => void;
+  id?: string;
+}
+
+export interface NewNoteUpCardProps {
+  updateNewNoteList: (newNote: Note) => void;
+  id: string;
 }
 
 export interface GetNotesResponse {
