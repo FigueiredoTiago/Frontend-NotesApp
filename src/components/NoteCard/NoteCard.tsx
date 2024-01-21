@@ -3,7 +3,7 @@ import del from "../../assets/img/delete.png";
 import star from "../../assets/img/star.png";
 import starGold from "../../assets/img/starGold.png";
 import color from "../../assets/img/color.svg";
-import edit from "../../assets/img/edit.svg";
+import UpdateNote from "../UpdateNote/UpdateNote";
 import { NoteCardFavProps } from "../../interfaces/notes.interface";
 import { deleteNote } from "../../services/API";
 
@@ -34,7 +34,7 @@ const NoteCard: React.FC<NoteCardFavProps> = ({ note, updateNoteList }) => {
       <p className="note-text">{note.description}</p>
 
       <div className="box-icon">
-        <img src={edit} alt="edit icon" />
+        <UpdateNote />
         <img src={color} alt="color icon" />
         <img src={del} alt="color icon" onClick={() => handleDeleteNote()} />
       </div>
